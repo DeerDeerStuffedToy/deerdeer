@@ -7,8 +7,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      - name: Setup Chocolatey
-        uses: chocolatey/setup-chocolatey@v1
       - name: Install MinGW
         run: choco install mingw -y
       - name: Compile .c to .exe
