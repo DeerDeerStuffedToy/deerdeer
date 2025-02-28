@@ -1,0 +1,21 @@
+name: Build hello
+on:
+  workflow_dispatch
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Setup Chocolatey
+        uses: chocolatey/setup-chocolatey@v1
+      - name: Install MinGW
+        run: choco install mingw -y
+      - name: Compile .c to .exe
+        run: gcc hello.c -o hello.exe
+        shell: bash
+      - name: Upload .exe as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: hello
+          path: hello.exe
